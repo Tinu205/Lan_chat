@@ -64,14 +64,6 @@ class ChatServer:
             client.close()
             self.broadcast(f'{alias} has left the chat !'.encode('utf-8'))
             
-
-            # Notify client via UDP
-            udp_socket = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-            client_address = client.getpeername()  # Get client's address
-            disconnect_message = 'You have been disconnected from the chat server.'.encode('utf-8')
-            udp_socket.sendto(disconnect_message, client_address)
-            udp_socket.close()
-
         except ValueError:
             pass  # Handle case where client not found in list
 
